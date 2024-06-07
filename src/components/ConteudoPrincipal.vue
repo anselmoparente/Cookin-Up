@@ -1,25 +1,28 @@
 <script lang="ts">
+import { ref } from 'vue';
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import Tag from './Tag.vue';
 
 export default {
-    components: { SelecionarIngredientes, Tag },
+    setup() {
+        const ingredients = ref<string[]>([]);
 
-    data() {
+        function addIngredient(ingredient: string) {
+            ingredients.value.push(ingredient);
+        }
+
+        function removeIngredient(ingredient: string) {
+            ingredients.value = ingredients.value.filter(element => ingredient !== element);
+        }
+
         return {
-            ingredients: [] as string[],
+            ingredients,
+            addIngredient,
+            removeIngredient,
         }
     },
 
-    methods: {
-        addIngredient(ingredient: string) {
-            this.ingredients.push(ingredient);
-        },
-
-        removeIngredient(ingredient: string) {
-            this.ingredients = this.ingredients.filter(list => ingredient !== list);
-        }
-    }
+    components: { SelecionarIngredientes, Tag },
 }
 </script>
 
@@ -42,7 +45,7 @@ export default {
             </p>
         </section>
 
-        <SelecionarIngredientes @add-ingredient="addIngredient" @remove-ingredient="removeIngredient"/>
+        <SelecionarIngredientes @add-ingredient="addIngredient" @remove-ingredient="removeIngredient" />
     </main>
 
 </template>
