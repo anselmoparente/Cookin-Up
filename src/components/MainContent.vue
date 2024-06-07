@@ -1,29 +1,18 @@
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue';
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import Tag from './Tag.vue';
 
-export default {
-    setup() {
-        const ingredients = ref<string[]>([]);
+const ingredients = ref<string[]>([]);
 
-        function addIngredient(ingredient: string) {
-            ingredients.value.push(ingredient);
-        }
-
-        function removeIngredient(ingredient: string) {
-            ingredients.value = ingredients.value.filter(element => ingredient !== element);
-        }
-
-        return {
-            ingredients,
-            addIngredient,
-            removeIngredient,
-        }
-    },
-
-    components: { SelecionarIngredientes, Tag },
+function addIngredient(ingredient: string) {
+    ingredients.value.push(ingredient);
 }
+
+function removeIngredient(ingredient: string) {
+    ingredients.value = ingredients.value.filter(element => ingredient !== element);
+}
+
 </script>
 
 <template>
