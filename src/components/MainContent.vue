@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import SelecionarIngredientes from './SelecionarIngredientes.vue';
+import SelectIngredients from './SelectIngredients.vue';
 import Tag from './Tag.vue';
 
 const ingredients = ref<string[]>([]);
@@ -34,7 +34,7 @@ function removeIngredient(ingredient: string) {
             </p>
         </section>
 
-        <SelecionarIngredientes @add-ingredient="addIngredient" @remove-ingredient="removeIngredient" />
+        <SelectIngredients @add-ingredient="addIngredient" @remove-ingredient="removeIngredient" />
     </main>
 
 </template>
