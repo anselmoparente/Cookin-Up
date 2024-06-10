@@ -2,10 +2,10 @@
 import { getCategories } from '@/http';
 import type ICategories from '@/interfaces/ICategories';
 import CardCategory from './CardCategory.vue';
-import ButtonPrincipal from './ButtonPrincipal.vue';
+import MainButton from './MainButton.vue';
 
 export default {
-    components: { ButtonPrincipal, CardCategory },
+    components: { MainButton, CardCategory },
 
     data() {
         return {
@@ -42,7 +42,7 @@ export default {
             *Atenção: consideramos que você tem em casa sal, pimenta e água.
         </p>
 
-        <ButtonPrincipal text="Buscar receitas!" />
+        <MainButton text="Buscar receitas!" />
     </section>
 </template>
 
