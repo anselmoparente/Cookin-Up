@@ -17,7 +17,7 @@ function removeIngredient(ingredient: string) {
     ingredients.value = ingredients.value.filter(element => ingredient !== element);
 }
 
-function searchRecipes(page: Page) {
+function navigation(page: Page) {
     content.value = page;
 }
 
@@ -43,9 +43,9 @@ function searchRecipes(page: Page) {
         </section>
 
         <SelectIngredients v-if="content === 'SelectIngredients'" @add-ingredient="addIngredient"
-            @remove-ingredient="removeIngredient" @search-recipes="searchRecipes('ShowRecipes')" />
+            @remove-ingredient="removeIngredient" @search-recipes="navigation('ShowRecipes')" />
 
-        <ShowRecipes v-else-if="content === 'ShowRecipes'" />
+        <ShowRecipes v-else-if="content === 'ShowRecipes'" @edit-receipes="navigation('SelectIngredients')" />
     </main>
 
 </template>
