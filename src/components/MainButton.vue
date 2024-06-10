@@ -1,14 +1,11 @@
-<script lang="ts">
-export default {
-    props: {
-        text: { type: String, required: true },
-    }
-}
+<script setup lang="ts">
+const props = defineProps({ text: String });
+
 </script>
 
 <template>
     <button class="paragrafo-lg botao-principal">
-        {{ text }}
+        {{ props.text }}
     </button>
 </template>
 
