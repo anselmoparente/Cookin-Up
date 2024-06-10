@@ -2,8 +2,12 @@
 import { ref } from 'vue';
 import SelectIngredients from './SelectIngredients.vue';
 import Tag from './Tag.vue';
+import ShowRecipes from './ShowRecipes.vue';
+
+type Page = 'SelectIngredients' | 'ShowRecipes';
 
 const ingredients = ref<string[]>([]);
+const content = ref<Page>('SelectIngredients');
 
 function addIngredient(ingredient: string) {
     ingredients.value.push(ingredient);
@@ -11,6 +15,10 @@ function addIngredient(ingredient: string) {
 
 function removeIngredient(ingredient: string) {
     ingredients.value = ingredients.value.filter(element => ingredient !== element);
+}
+
+function searchRecipes(page: Page) {
+    content.value = page;
 }
 
 </script>
@@ -34,7 +42,10 @@ function removeIngredient(ingredient: string) {
             </p>
         </section>
 
-        <SelectIngredients @add-ingredient="addIngredient" @remove-ingredient="removeIngredient" />
+        <SelectIngredients v-if="content === 'SelectIngredients'" @add-ingredient="addIngredient"
+            @remove-ingredient="removeIngredient" @search-recipes="searchRecipes('ShowRecipes')" />
+
+        <ShowRecipes v-else-if="content === 'ShowRecipes'" />
     </main>
 
 </template>

@@ -17,7 +17,7 @@ export default {
         this.categories = await getCategories()
     },
 
-    emits: ['addIngredient', 'removeIngredient'],
+    emits: ['addIngredient', 'removeIngredient', 'searchRecipes'],
 }
 </script>
 
@@ -42,7 +42,7 @@ export default {
             *Atenção: consideramos que você tem em casa sal, pimenta e água.
         </p>
 
-        <MainButton text="Buscar receitas!" />
+        <MainButton text="Buscar receitas!" @click="$emit('searchRecipes')" />
     </section>
 </template>
 
