@@ -46,7 +46,8 @@ function navigation(page: Page) {
             <SelectIngredients v-if="content === 'SelectIngredients'" @add-ingredient="addIngredient"
                 @remove-ingredient="removeIngredient" @search-recipes="navigation('ShowRecipes')" />
 
-            <ShowRecipes v-else-if="content === 'ShowRecipes'" @edit-receipes="navigation('SelectIngredients')" />
+            <ShowRecipes v-else-if="content === 'ShowRecipes'" :ingredients="ingredients"
+                @edit-receipes="navigation('SelectIngredients')" />
         </KeepAlive>
     </main>
 

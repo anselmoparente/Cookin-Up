@@ -3,11 +3,17 @@ import { getReceipes } from '@/http';
 import type IRecipe from '@/interfaces/IRecipe';
 import MainButton from './MainButton.vue';
 import CardRecipe from './CardRecipe.vue';
+import type { PropType } from 'vue';
+import { belongsToList } from '@/operations/lists';
 
 export default {
     components: { CardRecipe, MainButton },
 
-    data() {
+    props: {
+        ingredients: { type: Array as PropType<string[]>, required: true }
+    },
+
+    data() {  
         return {
             recipesFound: [] as IRecipe[]
         };
@@ -16,7 +22,12 @@ export default {
     async created() {
         const receipes = await getReceipes();
 
-        this.recipesFound = receipes.slice(0, receipes.length);
+        this.recipesFound = receipes.filter(recipe => {
+            const canDoRecipe = belongsToList(recipe.ingredientes, this.ingredients);
+
+            return canDoRecipe;
+        })
+
     },
 
     emits: ['editReceipes'],
