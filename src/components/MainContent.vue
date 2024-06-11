@@ -42,10 +42,12 @@ function navigation(page: Page) {
             </p>
         </section>
 
-        <SelectIngredients v-if="content === 'SelectIngredients'" @add-ingredient="addIngredient"
-            @remove-ingredient="removeIngredient" @search-recipes="navigation('ShowRecipes')" />
+        <KeepAlive include="SelectIngredients">
+            <SelectIngredients v-if="content === 'SelectIngredients'" @add-ingredient="addIngredient"
+                @remove-ingredient="removeIngredient" @search-recipes="navigation('ShowRecipes')" />
 
-        <ShowRecipes v-else-if="content === 'ShowRecipes'" @edit-receipes="navigation('SelectIngredients')" />
+            <ShowRecipes v-else-if="content === 'ShowRecipes'" @edit-receipes="navigation('SelectIngredients')" />
+        </KeepAlive>
     </main>
 
 </template>

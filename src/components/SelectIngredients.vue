@@ -5,6 +5,8 @@ import CardCategory from './CardCategory.vue';
 import MainButton from './MainButton.vue';
 
 export default {
+    name: 'SelectIngredients',
+
     components: { MainButton, CardCategory },
 
     data() {
